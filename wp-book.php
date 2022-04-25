@@ -62,3 +62,7 @@ function Wp_Book_Uninstall_cb()
 // Custom post type Book.
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_cpt.php';
 add_action('init', 'wp_book_cpt_init');
+
+// Custom hierarchical taxonomy Book Category.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_category.php';
+add_action('init', 'wp_book_category_init');
