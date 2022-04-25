@@ -75,3 +75,14 @@ add_action('init', 'wp_book_tag_init');
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_metabox.php';
 add_action('add_meta_boxes', 'wp_book_metabox_init');
 add_action('save_post', 'wp_book_metabox_save_post');
+
+
+/*
+ * Custom meta table(wp_bookmeta) and save all book meta information in that table.
+ * wp_bookmeta creted at plugin activation.
+ * wp_bookmeta droped at plugin deactivation.
+ * below is for register the wp_bookmeta in wordpress.
+ */
+
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_meta_table.php';
+add_action('plugins_loaded', 'wp_book_meta_table_init');
