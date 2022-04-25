@@ -66,3 +66,7 @@ add_action('init', 'wp_book_cpt_init');
 // Custom hierarchical taxonomy Book Category.
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_category.php';
 add_action('init', 'wp_book_category_init');
+
+// Custom non-hierarchical taxonomy Book Tag.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_tag.php';
+add_action('init', 'wp_book_tag_init');
