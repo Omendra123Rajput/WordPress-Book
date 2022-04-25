@@ -86,3 +86,8 @@ add_action('save_post', 'wp_book_metabox_save_post');
 
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_meta_table.php';
 add_action('plugins_loaded', 'wp_book_meta_table_init');
+
+// Custom admin settings page for Book.(In :- WP Book > Book Settings).
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_admin_setting.php';
+add_action('admin_menu', 'wp_book_settings_menu_init');
+add_action('admin_init', 'wp_book_admin_settings_init');
