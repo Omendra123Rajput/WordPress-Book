@@ -70,3 +70,8 @@ add_action('init', 'wp_book_category_init');
 // Custom non-hierarchical taxonomy Book Tag.
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_tag.php';
 add_action('init', 'wp_book_tag_init');
+
+// Custom meta box book to save book meta information.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_metabox.php';
+add_action('add_meta_boxes', 'wp_book_metabox_init');
+add_action('save_post', 'wp_book_metabox_save_post');
