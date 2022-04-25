@@ -1,82 +1,64 @@
 <?php
 
 /**
- * The plugin bootstrap file
+ * Plugin wp-book root file.
  *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              https://mail.google.com/mail/u/0/#inbox
- * @since             1.0.0
- * @package           Wp_Book
- *
- * @wordpress-plugin
  * Plugin Name:       WP Book
- * Plugin URI:        www.wpbook.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        https://github.com/Omendra123Rajput/wordpress-book
+ * Description:       To manage all book related functionalities.
  * Version:           1.0.0
  * Author:            Omendra Rajput
  * Author URI:        https://mail.google.com/mail/u/0/#inbox
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:           GPL v2 or later
  * Text Domain:       wp-book
- * Domain Path:       /languages
+ * Domain Path:       /languages/
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+defined('ABSPATH') || die('Denied Direct Access.');
 
+defined('WP_BOOK_PLUGIN_DIR_PATH') || define('WP_BOOK_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+defined('WP_BOOK_PLUGIN_URL') || define('WP_BOOK_PLUGIN_URL', plugins_url().'/wp-book');
 /**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
+ * register_activation_hook function activates our plugin
  */
-define( 'WP_BOOK_VERSION', '1.0.0' );
-
+register_activation_hook(
+    __FILE__,
+    function () {
+        wp_bookmeta_table_create();
+    }
+);
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-wp-book-activator.php
+ * register_deactivation_hook function deactivates our plugin
  */
-function activate_wp_book() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-book-activator.php';
-	Wp_Book_Activator::activate();
-}
 
+register_deactivation_hook(
+    __FILE__,
+    function () {
+    }
+);
 /**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wp-book-deactivator.php
+ * register_uninstall_hook function uninstalls our plugin
  */
-function deactivate_wp_book() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-book-deactivator.php';
-	Wp_Book_Deactivator::deactivate();
-}
+register_uninstall_hook(
+    __FILE__,
+    'wp_book_uninstall_cb'
+);
+// All DB operations.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/db.php';
 
-register_activation_hook( __FILE__, 'activate_wp_book' );
-register_deactivation_hook( __FILE__, 'deactivate_wp_book' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wp-book.php';
 
 /**
- * Begins execution of the plugin.
+ * Things to do at plugin delete/uninstall.
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
+ * @return void.
  */
-function run_wp_book() {
+function Wp_Book_Uninstall_cb()
+{
+        unregister_post_type('book');
+        wp_bookmeta_table_drop();
 
-	$plugin = new Wp_Book();
-	$plugin->run();
+}//end Wp_Book_Uninstall_cb()
 
-}
-run_wp_book();
+// Custom post type Book.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_cpt.php';
+add_action('init', 'wp_book_cpt_init');
