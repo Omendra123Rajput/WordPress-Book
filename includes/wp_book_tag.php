@@ -12,7 +12,7 @@ function wp_book_tag_init()
 {
     $labels = [
         'name'                       => __('Book Tag', 'wp-book'),
-        'singular_name'              => __('Book', 'wp-book'),
+        'singular_name'              => __('Book Tag', 'wp-book'),
         'search_items'               => __('Search Book Tag', 'wp-book'),
         'popular_items'              => __('Popular Book Tag', 'wp-book'),
         'all_items'                  => __('All Book Tag', 'wp-book'),
@@ -20,7 +20,7 @@ function wp_book_tag_init()
         'parent_item_colon'          => null,
         'edit_item'                  => __('Edit Book', 'wp-book'),
         'update_item'                => __('Update Book', 'wp-book'),
-        'add_new_item'               => __('Add New Book', 'wp-book'),
+        'add_new_item'               => __('Add New Book Tag', 'wp-book'),
         'new_item_name'              => __('New Book Name', 'wp-book'),
         'separate_items_with_commas' => __('Separate Book Tag with commas', 'wp-book'),
         'add_or_remove_items'        => __('Add or remove Book Tag', 'wp-book'),

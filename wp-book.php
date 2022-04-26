@@ -91,3 +91,14 @@ add_action('plugins_loaded', 'wp_book_meta_table_init');
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_admin_setting.php';
 add_action('admin_menu', 'wp_book_settings_menu_init');
 add_action('admin_init', 'wp_book_admin_settings_init');
+
+/*
+ * Shortcode [book] to display the book(s) information.
+ * Shortcode attributes should be id, author_name, year, category, tag, and publisher.
+ * [book category="c1" tag="t1,t2"]
+ * [book author_name="a1" publisher="p1,p2" year="2009"]
+ * [book]
+ */
+
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_shortcode.php';
+add_action('init', 'wp_book_shortcode_init');
