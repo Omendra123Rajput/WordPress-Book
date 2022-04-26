@@ -102,3 +102,7 @@ add_action('admin_init', 'wp_book_admin_settings_init');
 
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_shortcode.php';
 add_action('init', 'wp_book_shortcode_init');
+
+// Custom widget to display books of selected category in the sidebar.
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_cust_widget.php';
+add_action('widgets_init', 'wp_book_cust_widget_init');
