@@ -107,3 +107,7 @@ add_action('init', 'wp_book_shortcode_init');
 // Custom widget to display books of selected category in the sidebar.
 require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_cust_widget.php';
 add_action('widgets_init', 'wp_book_cust_widget_init');
+
+// Custom dashboard widget which shows the top 5 book categories (based on count).
+require WP_BOOK_PLUGIN_DIR_PATH.'includes/wp_book_dash_cat_widget.php';
+add_action('wp_dashboard_setup', 'wp_book_dash_cat_widget_init');
