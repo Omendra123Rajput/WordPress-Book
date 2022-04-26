@@ -171,7 +171,7 @@ class WP_BOOK_CUST_Widget extends WP_Widget
         }//end if
 
         // WordPress core after_widget hook (always include ).
-        // echo $args['after_widget'];git
+        // echo $args['after_widget'];
 
     }//end widget()
 
